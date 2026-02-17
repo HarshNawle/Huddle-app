@@ -9,12 +9,10 @@ import setupSocket from './socket.js'
 import http from 'http';
 import messagesRoutes from "./routes/MessagesRoutes.js";
 import channelRoutes from "./routes/ChannelRoutes.js";
-import path from "path"
+
 
 dotenv.config();
 const app = express();
-
-const _dirname = path.resolve(); // give path of backend
 
 const server = http.createServer(app);
 
@@ -40,16 +38,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/contacts', contactRoutes);
 app.use('/api/messages', messagesRoutes);
 app.use('/api/channel', channelRoutes);
-
-app.use(express.static(path.join(_dirname, "/frontend/dist")));
-app.use((req, res, next) => {
-    // Skip API routes and static files
-    if (req.path.startsWith('/api') || req.path.startsWith('/uploads') || req.path.startsWith('/upload')) {
-        return next();
-    }
-    // Serve index.html for all other routes (SPA fallback)
-    res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"));
-});
 
 const PORT = process.env.PORT;
 

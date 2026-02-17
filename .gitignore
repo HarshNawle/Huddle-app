@@ -23,8 +23,26 @@ dist-ssr
 *.sln
 *.sw?
 
+# dependencies
+frontend/node_modules
+backend/node_modules
+/.pnpm
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+/.env.local
+
+frontend/.env
+backend/.env
+
 .env
-.env.local
 .env.development.local
 .env.test.local
 .env.production.local
